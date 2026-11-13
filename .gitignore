@@ -1,0 +1,51 @@
+# ---- Secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+
+# ---- Model weights & training artifacts (publish on Hugging Face instead) ----
+fused-model/
+adapters/
+checkpoints/
+*.safetensors
+*.gguf
+*.bin
+*.npz
+*.pt
+*.pth
+
+# ---- Data (keep only a small public/synthetic sample) ----
+data/*
+!data/sample/
+!data/README.md
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Editors & OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---- Notebooks ----
+.ipynb_checkpoints/
