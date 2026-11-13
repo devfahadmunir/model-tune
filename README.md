@@ -55,8 +55,9 @@ The gateway passes every request through unchanged, with one exception: if the l
 
 | | |
 |---|---|
-| **Base model** | `[e.g., Qwen/Qwen3-xB, link to Hugging Face]` |
-| **Method** | LoRA (MLX) |
+| **Base model** | [Llama 3.2 3B Instruct (4-bit, MLX)](https://huggingface.co/mlx-community/Llama-3.2-3B-Instruct-4bit) |
+| **Method** | LoRA (MLX): rank 8, 16 layers, 200 iterations |
+| **Hardware** | MacBook Air M4, 16 GB |
 | **Task** | `[what the model was fine-tuned to do]` |
 | **Dataset** | `[public dataset name / link, or synthetic sample]` |
 | **Fine-tuned weights** | `[link to your Hugging Face model repo]` |
@@ -75,8 +76,8 @@ The gateway passes every request through unchanged, with one exception: if the l
 ## Setup
 
 ```bash
-git clone https://github.com/devfahadmunir/modeltune.git
-cd modeltune
+git clone https://github.com/devfahadmunir/model-tune.git
+cd model-tune
 
 uv venv
 source .venv/bin/activate
@@ -117,7 +118,7 @@ This writes the trained adapters to `./adapters`.
 
 ```bash
 mlx_lm.fuse \
-  --model [BASE_MODEL] \
+  --model mlx-community/Llama-3.2-3B-Instruct-4bit \
   --adapter-path ./adapters \
   --save-path ./fused-model
 ```
@@ -176,7 +177,7 @@ Point your client at the **gateway (8100)**, not the model server (8099):
 ## Project structure
 
 ```
-modeltune/
+model-tune/
 ├── src/modeltune/
 │   ├── data/            # dataset preparation
 │   ├── training/        # LoRA training wrapper
