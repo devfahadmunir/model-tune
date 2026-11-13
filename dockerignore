@@ -1,0 +1,8 @@
+.venv/
+adapters/
+fused-model/
+data/
+*.ipynb
+__pycache__/
+.git/
+.DS_Store

@@ -1,0 +1,38 @@
+[project]
+name = "modeltune"
+version = "0.1.0"
+description = "Local LLM fine-tuning (MLX) + search-augmented serving gateway"
+requires-python = ">=3.11"
+dependencies = [
+    "mlx-lm>=0.20",
+    "datasets>=2.19",
+    "huggingface_hub>=0.23",
+    "pyyaml>=6.0",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "httpx>=0.27",
+    "ddgs>=1.0",                    # DuckDuckGo search, no API key required
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+modeltune-prepare = "modeltune.data.prepare:main"
+modeltune-train = "modeltune.training.train:main"
+modeltune-gateway = "modeltune.serving.gateway:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/modeltune"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"

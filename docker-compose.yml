@@ -1,0 +1,15 @@
+services:
+  gateway:
+    build: .
+    ports:
+      - "8100:8100"
+    env_file:
+      - .env
+    environment:
+      # Overrides/supplements whatever .env provides — if .env doesn't set
+      # MLX_SERVER_URL, this default ensures the container still knows how
+      # to reach the native model server on the Mac host.
+      - MLX_SERVER_URL=${MLX_SERVER_URL:-http://host.docker.internal:8099/v1}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
